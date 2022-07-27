@@ -14,7 +14,9 @@ Output: 0
 Explanation: No triplet with zero sum exists. 
 
 Your Task:
-You don't need to read input or print anything. Your task is to complete the boolean function findTriplets() which takes the array arr[] and the size of the array (n) as inputs and print 1 if the function returns true else print 0 if the function returns false. 
+You don't need to read input or print anything. Your task is to complete the boolean function findTriplets() which takes 
+the array arr[] and the size of the array (n) as inputs and print 1 if the function returns true 
+else print 0 if the function returns false. 
 
 Expected Time Complexity: O(n2)
 Expected Auxiliary Space: O(1)
@@ -26,9 +28,9 @@ class TripletsZero{
 	
 	// O(n3) &  O(1)
 	/*static boolean findTriplet(int[] arr){
-		for(int i = 0; i < arr.length-2; i++){
-			for(int j = 0; j < arr.length-1; j++){
-				for(int k = 0; k < arr.length; k++){
+		for(int i = 0; i < n-2; i++){
+			for(int j = 0; j < n-1; j++){
+				for(int k = 0; k < n; k++){
 					if(arr[i] + arr[j] + arr[k] == 0){
 						return true;
 					}
@@ -40,16 +42,16 @@ class TripletsZero{
 	
 	// O(n2) & O(1) -- Two pointer technique
 	
-	static boolean findTriplet(int[] arr){
+	static boolean findTriplet(int[] arr, int n){
 		
 		int left, right, sum;
 		
 		Arrays.sort(arr); // [-3, -1, 0, 1, 2]
 		
-		for(int i = 0; i < arr.length-2; i++){
+		for(int i = 0; i < n-2; i++){
 			
 			left = i+1;
-			right = arr.length-1;
+			right = n-1;
 			
 			while(left < right){			
 				if(  arr[i] + arr[left] + arr[right] == 0){
@@ -67,7 +69,7 @@ class TripletsZero{
 	public static void main(String args[]){
 		int[] arr = {0, -1, 2, -3, 1};
 		
-		if(findTriplet(arr)){
+		if(findTriplet(arr, arr.length)){
 			System.out.println('1');
 		}else{
 			System.out.println('0');
