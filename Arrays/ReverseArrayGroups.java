@@ -31,6 +31,7 @@ import java.util.*;
 
 class ReverseArrayGroups{
 	//Function to reverse every sub-array group of size k.
+	//O(n)
 	static void reverse(ArrayList<Integer> arr, int length, int k){
 		for(int i = 0; i < length; i+=k){
 			int start = i;

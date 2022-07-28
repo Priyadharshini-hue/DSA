@@ -26,6 +26,7 @@ and returns the minimum and maximum element of the array.
 import java.util.*;
 
 class MinMaxElementArray{
+	//O(n)
 	static void find(long[] arr, long length){
 		long min = arr[0], max = arr[0];
 		

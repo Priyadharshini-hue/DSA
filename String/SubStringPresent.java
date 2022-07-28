@@ -25,7 +25,7 @@ Explanation: For is present as substring
 in GeeksForGeeks from index 5 (0 based
 indexing).
 */
-
+//O(n)
 class SubStringPresent{
 	static int find(String str, String f){
 		int j = 0;

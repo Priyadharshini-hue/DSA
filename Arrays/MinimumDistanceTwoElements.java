@@ -33,7 +33,7 @@ Expected Auxiliary Space: O(1)
 import java.util.*;
 
 class MinimumDistanceTwoElements{
-	
+	//O(n)
 	static int minDist(int[] arr, int length, int x, int y){
 		
 		int start = -1, end = -1, distance = length;
