@@ -28,35 +28,21 @@ Complete the function remAnagram() which takes two strings S1, S2 as input param
 import java.util.*;
 
 class MakeAnagramByDeleting{
-	//O(n) & O(n)
+	//O(n) & O(1)
 	static int remAnagram(String s1, String s2){
-		HashMap<Character, Integer> m = new HashMap<>();
-		
+		int[] count = new int[26];
+		int sum = 0;
 		for(int i = 0; i < s1.length(); i++){
-			if(m.containsKey(s1.charAt(i))){
-				m.put(s1.charAt(i), m.get(s1.charAt(i))+1);
-			}else{
-				m.put(s1.charAt(i), 1);
-			}
+			count[s1.charAt(i) - 'a']++;
 		}
 		for(int i = 0; i < s2.length(); i++){
-			//checking whether the letter is present as key in map and also the letter is already present in map since it is 1st word character
-			if(m.containsKey(s2.charAt(i)) && s1.indexOf(s2.charAt(i)) != -1){
-				m.put(s2.charAt(i), m.get(s2.charAt(i))-1);
-			}
-			else{
-				if(m.containsKey(s2.charAt(i))){
-				m.put(s2.charAt(i), m.get(s2.charAt(i))+1);
-			}else{
-				m.put(s2.charAt(i), 1);
-			}
-			}
+			count[s2.charAt(i) - 'a']--;
 		}
-		System.out.println(m);
-		int sum = 0;
-		for(int num : m.values()){
-			sum+=Math.abs(num);
+		//System.out.println(Arrays.toString(count));
+		for(int n : count){
+			sum += Math.abs(n);
 		}
+		
 		return sum;
 	}
 	public static void main(String[] args){
