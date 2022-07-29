@@ -28,6 +28,7 @@ Complete the function remAnagram() which takes two strings S1, S2 as input param
 import java.util.*;
 
 class MakeAnagramByDeleting{
+	//O(n) & O(n)
 	static int remAnagram(String s1, String s2){
 		HashMap<Character, Integer> m = new HashMap<>();
 		
@@ -39,6 +40,7 @@ class MakeAnagramByDeleting{
 			}
 		}
 		for(int i = 0; i < s2.length(); i++){
+			//checking whether the letter is present as key in map and also the letter is already present in map since it is 1st word character
 			if(m.containsKey(s2.charAt(i)) && s1.indexOf(s2.charAt(i)) != -1){
 				m.put(s2.charAt(i), m.get(s2.charAt(i))-1);
 			}
