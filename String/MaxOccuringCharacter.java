@@ -24,32 +24,30 @@ Expected Time Complexity: O(N).
 Expected Auxiliary Space: O(Number of distinct characters).
 */
 import java.util.*;
-
+	// O(n) & O(1)
 class MaxOccuringCharacter{
 	static char getMaxOccuringChar(String str){
-		TreeMap<Character, Integer> m = new TreeMap<>();
+		
+		int[] count = new int[26];
 		
 		for(int i = 0; i < str.length(); i++){
-			if(m.containsKey(str.charAt(i))){
-				m.put(str.charAt(i), m.get(str.charAt(i))+1);
-			}else{
-				m.put(str.charAt(i), 1);
+			if(str.charAt(i)!= ' '){
+				count[str.charAt(i) - 'a']++;
 			}
 		}
-		int max = 0; char a= ' ';
-		//System.out.println(m);
-		for(Map.Entry<Character, Integer> v : m.entrySet()){
-			if(max < v.getValue()){
-				max = v.getValue();
-				a = v.getKey();
+		System.out.println(Arrays.toString(count));
+		int max = -1;
+		char maxCharacter = 0;
+		for(int i = 0; i < 26; i++){
+			if(max < count[i]){
+				max = count[i];
+				maxCharacter = (char )(i + 'a');
 			}
-			
 		}
-
-		return a;
+		return maxCharacter;
 	}
 	public static void main(String[] args){
-		String str = "testsample";
+		String str = "test ete";
 		System.out.println(getMaxOccuringChar(str));
 	}
 }
