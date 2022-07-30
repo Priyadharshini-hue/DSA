@@ -22,6 +22,7 @@ which takes string S as input parameter and returns a string that contains the f
 */
 
 class FirstLetterOfEveryWord{
+	// O(n) & O(1)
 	static String firstAlphabet(String s){
 		String result = "";
 		result += s.charAt(0);
