@@ -22,11 +22,12 @@ S = 01101
 Output: 3
 Explanation: There 3 substrings from the
 given string. They are 11, 101, 1101.
-Your Task:
+Your Task: 1234 
 The task is to complete the function binarySubstring() which takes the length of binary string n and 
 a binary string a as input parameter and counts the number of substrings starting and ending with 1 and returns the count.
 */
 class BinaryString{
+	// O(n) & O(1)
 	static int binarySubstring(int a, String s){
 		int count = 0;
 		
