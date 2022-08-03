@@ -1,5 +1,7 @@
 /*
-
+Selection sort
+in-place, non- stable, non-adaptive
+O(n2)
 */
 import java.util.*;
 
