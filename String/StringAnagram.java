@@ -43,6 +43,6 @@ class StringAnagram{
 
 	public static void main(String[] args){
 		String a = "geeksforgeeks", b = "forgeeksgeeks";
-		System.out.println(isAnagram(a, b));
+		System.out.println(isAnagram(a.replaceAll("\\s",""), b.replaceAll("\\s","")));
 	}
 }
