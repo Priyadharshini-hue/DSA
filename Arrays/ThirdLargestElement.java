@@ -22,34 +22,6 @@ Complete the function thirdLargest() which takes the array a[] and the size of t
 returns the third largest element in the array. It return -1 if there are less than 3 elements in the given array.
 */
 class ThirdLargestElement{
-	// O(n)
-	/*static int thirdLargest(int[] arr, int n){
-	
-		int first = arr[0], second = -1, third = -1, count = 0;
-		
-		if(n > 3){
-			return -1;
-		}
-		
-		for(int i = 1; i < n; i++){
-			if(arr[i] > first ){
-				first = arr[i];
-			}
-		}
-	
-		for(int i = 1; i < n; i++){
-			if(arr[i] > second && arr[i] < first){
-				second= arr[i];
-			}
-		}
-	
-		for(int i = 1; i < n; i++){
-			if(arr[i] < second && arr[i] < first && arr[i] > third){
-				third = arr[i];
-			}
-		}
-		return third;
-	}*/
 	
 	//O(n) -- using single traversal
 	static int thirdLargest(int[] arr, int n){
