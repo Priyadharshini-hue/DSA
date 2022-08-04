@@ -1,14 +1,15 @@
 /* 
 Bubble Sorting / sinking sort
 O(n2) & O(1)
-In-place, stable, adaptive(deplends on initial input's sequential order) & 
+best cace - O(n)
+In-place, stable, adaptive(deplends on initial input's sequential order)
 */
 import java.util.*;
 
 class BubbleSort{
 	public static void main(String[] args){
 	
-		int[] arr = {1,2,3,4};
+		int[] arr = {2,4,3,5,1,7};
 		
 		for(int i = 0; i < arr.length - 1; i++){ // n-1 iterations
 			boolean swapped = false;
