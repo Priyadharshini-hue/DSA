@@ -8,6 +8,8 @@ Output: 7
 class UniqueElementinArray{
 	
 	static int find(int[] arr, int n){
+		
+		// ( 2*(sum_of_array_without_duplicates) - (sum_of_array) ) / 2)
 		int xorSum = arr[0];
 		
 		for(int i = 1; i < n; i++){
