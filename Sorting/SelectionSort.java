@@ -16,6 +16,14 @@ class SelectionSort{
 					smallIndex = j;
 				}
 			}
+			/* //for stable selection sort
+			int key = arr[smallIndex];
+			while(i < smallIndex ){
+				arr[smallIndex] = arr[smallIndex-1];
+				smallIndex--;
+			}
+			arr[smallIndex] = key;
+			*/
 			int t = arr[smallIndex];
 			arr[smallIndex] = arr[i];
 			arr[i] = t;
