@@ -8,7 +8,6 @@ Two strings are called K-anagrams if both of the below conditions are true.
 2. Two strings can become anagram by changing at most K characters in a string.
 
 Example:
-
 Input:
 str1 = "fodr", str2="gork"
 k = 2
