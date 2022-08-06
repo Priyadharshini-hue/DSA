@@ -14,32 +14,30 @@ import java.util.*;
 
 class SubArrayWithGivenSum{
 	
+	//sliding window technique - prints all the consecutive sub arrays of given sum -- +ve elements only
 	static void findSubArray(int[] arr, int length, int sum){
 		
-		int start = 0, end = 0;
-		int currentSum =0;
+		int currentSum = 0, start = 0, end = 0;
 		
 		for(int i = 0; i < length; i++){
-			currentSum +=arr[i];
+			currentSum = currentSum + arr[i];
 			end = i;
 			
 			if(currentSum >= sum){
-				
-				while(currentSum > sum && start < end){
-					currentSum -= arr[start];
+				while(currentSum > sum && start <end){
+					currentSum = currentSum - arr[start];
 					start++;
 				}
 				if(currentSum == sum){
-					System.out.println("Start index : " + start + "," + "End Index : " + end);
+					System.out.println(start + " " + end);
 					System.out.println(Arrays.toString(Arrays.copyOfRange(arr, start, end+1)));
 				}
 			}
 		}
-		
 	}
 
 	public static void main(String[] args){
-		int[] arr = {1,2,3,7,5};
+		int[] arr = {1, 2, 3, 7, 10, 5, 5, 1, 1, 3, 5};
 		int sum = 10;
 		
 		findSubArray(arr, arr.length, sum);
