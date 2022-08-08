@@ -1,3 +1,5 @@
+// return true if all the letters are capital
+
 class CapitalLetters{
 	
 	static boolean check(String s){
