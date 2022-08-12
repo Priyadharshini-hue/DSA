@@ -21,6 +21,7 @@ Output:
 class AlternateElement{
 	
 	static void printElement(int[] arr, int length){
+		// for-loop prints alternate elements
 		for(int i = 0; i < length; i += 2){
 			System.out.print(arr[i] + " ");
 		}
