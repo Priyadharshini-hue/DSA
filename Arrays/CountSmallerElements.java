@@ -25,13 +25,16 @@ Output:
 class CountSmallerElements{
 	
 	static int countOfElements(int[] arr, int length, int x){
+		
 		// traverse from 0 to n-1
 		for(int i = 0; i < length; i++){
+			
 			// if current element is greater than x, return index of current element
 			if(arr[i] > x){
 				return i;
 			}
 		}
+		
 		// if x is not present in given array, print length
 		return length;
 	}
