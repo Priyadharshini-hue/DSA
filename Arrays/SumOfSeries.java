@@ -23,12 +23,13 @@ as input parameters and returns an integer denoting the answer. You don't to pri
 class SumOfSeries{
 	
 	static long seriesSum(int n){
-		return ((n)*(n+1))/2;
+		// int to long conversion
+		return ((long)(n)*(n+1))/2;
 	}
 	
 	public static void main(String[] args){
 		
-		int n = 5;
+		int n = 46341;
 		
 		System.out.println(seriesSum(n));
 	}
