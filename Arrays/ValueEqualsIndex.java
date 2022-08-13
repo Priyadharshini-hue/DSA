@@ -36,8 +36,11 @@ class ValueEqualsIndex{
 		
 		ArrayList<Integer> elementEqualsIndex = new ArrayList<>();
 		
+		// traversing from 0 to n-1
 		for(int i = 0; i < length; i++){
+			// if the current element is equal to index
 			if(i+1 == arr[i]){
+				// if equals, add it to the elementEqualsIndex
 				elementEqualsIndex.add(arr[i]);
 			}
 		}
