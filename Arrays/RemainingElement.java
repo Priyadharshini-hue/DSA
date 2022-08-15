@@ -39,11 +39,14 @@ import java.util.*;
 class RemainingElement{
 	
 	static int leftElement(int[] arr, int length){
+		// sort array
 		Arrays.sort(arr); 
 		
+		// if length is even
 		if(length % 2 == 0){
 			return arr[(length/2)-1];
 		}
+		// if length is odd
 		return arr[length/2];
 	}
 
