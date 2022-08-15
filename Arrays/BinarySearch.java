@@ -25,36 +25,29 @@ You dont need to read input or print anything. Complete the function binarysearc
 N and K as input parameters and returns the index of K in the array. If K is not present in the array, return -1.
 */
 class BinarySearch{
-	// O(log n) & O(log n) -- Recursive method
-	/*static int search(int k, int[] arr, int l, int r){
-		if(l<=r){
-			int mid = (l+r)/2;
-		
-			if(arr[mid] == k){
-				return mid;
-			}else if(arr[mid] < k){
-				return search(k, arr, mid+1, r);
-			}else{
-				return search(k, arr, l, mid);
-			}
-		}
-		return -1;
-	}*/
 	// O(log n) & O(1)
-	static int search(int k, int[] arr){
-		int l = 0, r = arr.length-1;
+	static int search(int k, int[] arr, int l, int r){
 		
+		// while loop to traverse between l and r
 		while(l <= r){
+			
+			// find the mid by (l+r)/2
 			int mid = (l+r)/2;
 			
-			if(arr[mid] == k){
+			// if mid element is equal to k, return mid index
+			if(k == arr[mid]){
 				return mid;
-			}else if(arr[mid] > k){
+			} 
+			// if mid element is greater than k, reset r to the mid's previous element index (ignores right side of array)
+			else if(k < arr[mid]){
 				r = mid-1;
-			}else{
+			}
+			// if mid element is less than k, reset r to the mid's next element index (ignores left side of array)
+			else{
 				l = mid+1;
 			}
 		}
+		// if nothing found, return -1
 		return -1;
 	}
 	
@@ -62,7 +55,6 @@ class BinarySearch{
 		int k = 33;
 		int arr[] = {1, 22, 33, 44, 55, 66};
 		
-		//System.out.println(search(k, arr, 0, arr.length-1));
-		System.out.println(search(k, arr));
+		System.out.println(search(k, arr, 0, arr.length-1));
 	}
 }
