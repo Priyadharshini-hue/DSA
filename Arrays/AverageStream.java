@@ -37,14 +37,18 @@ import java.util.*;
 class AverageStream{
 	
 	static float[] streamAvg(int[] arr, int length){
-	
-		int sum = 0;
 		
+		// intialize sum
+		int sum = 0;
+		// intialize average
 		float[] average = new float[length];
 		
 		for(int i = 0; i < length; i++){
+			
+			// add to sum at each iteration
 			sum += arr[i];
 			
+			// find the average at each iteration
 			average[i] = ((float)sum)/(i+1);
 		}
 		
