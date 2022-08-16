@@ -25,12 +25,12 @@ class LongestName{
 		// initialize longestName
 		String longestName = "";
 		
-		// traverse from 0 to n-1
-		for(int i = 0; i < length; i++){
+		// traverse names array
+		for(String word : names){
 			
-			// check if current element's length is greater than longestName's length 
-			if(longestName.length() < names[i].length()){
-				longestName = names[i];
+			// if current word's length is greater than longestName's length, then replace the longestName
+			if(longestName.length() < word.length()){
+				longestName = word;
 			}
 		}
 		return longestName;
