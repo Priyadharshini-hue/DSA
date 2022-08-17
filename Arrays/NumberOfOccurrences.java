@@ -27,22 +27,31 @@ class NumberOfOccurrences{
 	
 	static int count(int[] arr, int length, int x){
 		
-		int start = 0, end = length, position = 0, count = 0;
+		// initialize start, end, position, count
+		int start = 0, end = length - 1, position = 0, count = 0;
 		
+		// while loop to find the minimum index value of position of the x
 		while(start <= end){
 			
 			int mid = (start + end)/2;
 			
+			// if x is less than the mid element, set end as mid's previous element
 			if(x < arr[mid]){
 				end = mid - 1;
-			}else if(x > arr[mid]){
+			}
+			// if x is less than the mid element, set start as mid's nestelement
+			else if(x > arr[mid]){
 				start = mid + 1;
-			}else{
+			} 
+			//if x is equal to mid element, store the mid value in position and set end to mid's previous element 
+			// to check if there is any element equal to x before it
+			else{
 				position = mid;
 				end = mid - 1;
 			}
 		}
 		
+		// use while to count the occurrences of x
 		while(position < length && arr[position] == x ){
 			count++;
 			position++;
