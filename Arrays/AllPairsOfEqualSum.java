@@ -17,13 +17,19 @@ import java.util.*;
 class AllPairsOfEqualSum{
 	
 	static void findPairs(int[] arr, int n){
+		// hashmap to store the pairs 
 		HashMap<Integer, Integer> pairs = new HashMap<>();
 		
+		// traverse through the array from 0 to n
 		for(int i = 0; i < n; i++){
+			// traverse through the array from i to n
 			for(int j = i+1; j < n; j++){
+				// if the sum exists in the pairs, print the current pair and the value from pairs
 				if(pairs.containsKey(arr[i] + arr[j])){
 					System.out.println( arr[i] + "," + arr[j] + "=>" + ((arr[i] + arr[j]) - pairs.get(arr[i] + arr[j])));
-				}else{
+				}
+				// else put the new pair in pairs
+				else{
 					pairs.put(arr[i] + arr[j], arr[i]);
 				}
 			}
