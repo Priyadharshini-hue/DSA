@@ -44,6 +44,7 @@ class BinaryArraySorting{
 		// initialize start, end
 		int start = 0, end = length;
 		
+		// using two pointer technique
 		while(start <= end){
 			if(arr[start] == 1 && arr[end] == 0){
 				arr[start] = 0;
