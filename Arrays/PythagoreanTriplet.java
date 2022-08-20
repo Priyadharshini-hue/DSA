@@ -28,7 +28,6 @@ Note: The driver will print "Yes" or "No" instead of boolean.
 Expected Time Complexity: O(max(Arr[i])2)
 Expected Auxiliary Space: O(max(Arr[i]))
 */
-import java.util.*;
 
 class PythagoreanTriplet{
 	
@@ -73,6 +72,5 @@ class PythagoreanTriplet{
 		
 		System.out.print(checkTriplet(arr, arr.length));		
 		
-		//System.out.println(Arrays.toString(arr));
 	}
 }
