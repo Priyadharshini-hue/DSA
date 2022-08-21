@@ -26,13 +26,15 @@ returns a boolean value denoting if A is a subsequence of B or not.
 class SubSequence{
 	
 	static int isSubSequence(String A, String B){
-		
+		//Initialize tIndex and count
 		int tIndex = 0, count = -1;
 		
+		// Traverse the string A
 		for(int  i = 0; i < A.length(); i++){
-			 if( tIndex < A.length() && B.charAt(i) == A.charAt(tIndex)){
-				 tIndex++;
-			 }
+			// Increment tIndex by 1 till the length of A and if b eqauls A 
+			if( tIndex < A.length() && B.charAt(i) == A.charAt(tIndex)){
+				tIndex++;
+			}
 		}
 		return tIndex == A.length() ? 1 :0;
 	}
