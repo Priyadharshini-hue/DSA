@@ -30,7 +30,9 @@ Expected Auxiliary Space: O(1)
 class SearchNumberFirstOccurence{
 
 	static int search(int[] arr, int length, int k){
+		// Traverse the array
 		for(int i = 0; i < length; i++){
+			// Check if k to each element
 			if(k == arr[i]){
 				return i;
 			}
@@ -39,6 +41,7 @@ class SearchNumberFirstOccurence{
 	}
 	
 	public static void main(String[] args){
+		// unsorted array
 		int arr[] = {9, 7, 2, 16, 4};
 		int k = 16;
 		
