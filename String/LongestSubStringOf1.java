@@ -24,13 +24,17 @@ Output:
 class LongestSubStringOf1{
 	
 	static int count(String s){
+		// Initialize length, count
 		int length = 0, count = 0;
 		
+		// Traverse the string s
 		for(int i = 0; i < s.length(); i++){
+			// if the character is equal to 1, then increment count by 1 and find the max length
 			if(s.charAt(i) == '1'){
 				count++;
 				length = Math.max(length, count);
 			}else{
+				// if the substring breaks, then reset count
 				count = 0;
 			}
 		}
