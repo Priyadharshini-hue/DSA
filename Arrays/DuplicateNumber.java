@@ -6,19 +6,18 @@ import java.util.*;
 class DuplicateNumber{
 	// O(n) & O(n)
 	static int find(int[] arr){
-		int d = 0;
-		
+		// Initialize hashmap m
 		HashMap<Integer, Integer> m = new HashMap<>();
 		
+		// Traverse the array
 		for(int i = 0; i < arr.length; i++){
-			if(!m.containsKey(arr[i])){
-				m.put(arr[i], 1);
-			}else{
-				m.put(arr[i], m.get(arr[i])+1);
-			}
+			// To create map by checking the map for the key, if not set the value for the first time else increment by 1
+			m.put(arr[i], m.getOrDefault(arr[i],0)+1);
 		}
 		
+		// Traverse the map
 		for(Map.Entry<Integer, Integer> map : m.entrySet()){
+			// To check the frequency of the element is greaten than 1
 			if(map.getValue() > 1){
 				System.out.println( map.getKey());
 			}
