@@ -23,7 +23,8 @@ class AllPairsOfGivenSum{
 			// If pairs contains Key
 			if(pairs.containsKey(arr[i])){
 				System.out.println(pairs.get(arr[i]) + "," + arr[i]);
-			} // If not, subract the element from target which is key and the element is value
+			} 
+			// If not, subract the element from target which is key and the element is value
 			else{
 				pairs.put(target - arr[i], arr[i]);
 			}
