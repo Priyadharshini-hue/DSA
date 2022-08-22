@@ -14,12 +14,17 @@ import java.util.*;
 class AllPairsOfGivenSum{
 	
 	static void findPairs(int[] arr, int length, int target){
+		
+		// Initialize pairs
 		HashMap<Integer, Integer> pairs = new HashMap<>();
 		
+		// Traverse the array
 		for(int i = 0; i < length; i++){
+			// If pairs contains Key
 			if(pairs.containsKey(arr[i])){
 				System.out.println(pairs.get(arr[i]) + "," + arr[i]);
-			}else{
+			} // If not, subract the element from target which is key and the element is value
+			else{
 				pairs.put(target - arr[i], arr[i]);
 			}
 			System.out.println(pairs);
