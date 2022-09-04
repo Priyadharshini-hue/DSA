@@ -15,8 +15,6 @@ Arr[] = {​​2, 3, 4, 5, -1, 0}​​
 Output: 120
 Explanation: Subarray with maximum product is [2, 3, 4, 5] which gives product as 120.
 */
-import java.util.*;
-
 class SubArrayMaxProduct{
 	
 	static void find(int[] arr, int length){

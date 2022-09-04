@@ -30,7 +30,6 @@ Complete the function minDist() which takes the array, n, x and y as input param
 Expected Time Complexity: O(N)
 Expected Auxiliary Space: O(1)
 */
-import java.util.*;
 
 class MinimumDistanceTwoElements{
 	//O(n)

@@ -33,7 +33,7 @@ import java.util.*;
 class TwoArraysEquality{
 	// O(n) & O(n)
 	static int check(int[] a, int[] b){
-		int aLength = a.length, bLength = b.length, count = 0;
+		int aLength = a.length, bLength = b.length;
 		HashMap<Integer, Integer> map = new HashMap<>(); 
 		
 		if(aLength != bLength){

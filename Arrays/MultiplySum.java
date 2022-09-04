@@ -33,7 +33,7 @@ class MultiplySum{
 	
 	static int multiply(int[] arr, int length){
 		
-		int start = 0, end = length-1, sumLeft = 0, sumRight = 0, mid =(start+end)/2;
+		int start = 0, end = length-1, sumLeft = 0, sumRight = 0;
 	
 		// while loop to iterate b/w start and end
 		while(start < end){

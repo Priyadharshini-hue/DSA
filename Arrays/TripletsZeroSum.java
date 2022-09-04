@@ -44,7 +44,7 @@ class TripletsZero{
 	
 	static boolean findTriplet(int[] arr, int n){
 		
-		int left, right, sum;
+		int left, right;
 		
 		Arrays.sort(arr); // [-3, -1, 0, 1, 2]
 		
