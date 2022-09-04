@@ -19,11 +19,20 @@ class ExcelColumnName {
     // log26(n)
     static StringBuilder commanName(int n) {
         StringBuilder str = new StringBuilder();
+
         while (n > 0) {
-            // Find the reminder and subract by 1 and add 'A'
-            str.append((char) (((n % 26) - 1) + 'A'));
-            // Reduce n ny 26
-            n = n / 26;
+            int r = n % 26;
+            // If reminder equals zero and 'Z' to str
+            if (r == 0) {
+                str.append('Z');
+                // Reduce n by 26 and subract one from it
+                n = (n / 26) - 1;
+            } else {
+                // Find the reminder and subract by 1 and add 'A'
+                str.append((char) (((r) - 1) + 'A'));
+                // Reduce n by 26
+                n = n / 26;
+            }
         }
         return str.reverse();
     }
