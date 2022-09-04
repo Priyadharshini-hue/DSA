@@ -20,13 +20,21 @@ Z => 26
 
 Given an excel column number, find the numerical column number.
  */
+
+ // Time Complexity: O(n)
+// Space Complexity: O(1)
+
 class ExcelColumnNumber {
     static int numericalColumnNumber(String s) {
         int number = 0, base = 1;
 
-        for(char c : s.toCharArray()){
-            number += (Character.valueOf(c) - 'A' + 1) * base;
+        // Traversing through the string
+        for (int i = s.length() - 1; i >= 0; i--) {
+            
+            // Storing the multiplied value of character and base(1*26*26*...) 
+            number += (Character.valueOf(s.charAt(i)) - 'A' + 1) * base;
 
+            // Increasing the value of base at each iteration
             base *= 26;
         }
         return number;
