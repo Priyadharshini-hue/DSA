@@ -26,7 +26,6 @@ You dont need to read input or print anything.
 Complete the function UncommonChars() which takes strings A and B as input parameters and 
 returns a string that contains all the uncommon characters in sorted order. If no such character exists return "-1".
 */
-import java.util.*;
 
 class UncommonCharacters{
 	

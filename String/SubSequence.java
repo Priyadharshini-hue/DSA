@@ -27,7 +27,7 @@ class SubSequence{
 	
 	static int isSubSequence(String A, String B){
 		//Initialize tIndex and count
-		int tIndex = 0, count = -1;
+		int tIndex = 0;
 		
 		// Traverse the string A
 		for(int  i = 0; i < A.length(); i++){

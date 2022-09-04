@@ -22,7 +22,6 @@ so on .
 Your Task:  
 You dont need to read input or print anything. Complete the function revStr() which takes S as input parameter and returns the reversed string .
 */
-import java.util.*;
 
 class ReverseString{
 	

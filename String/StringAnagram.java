@@ -26,7 +26,6 @@ class StringAnagram{
 	
 	static String isAnagram(String s1, String s2){
 		int[] alphabetsArr = new int[256];
-		int k =0;
 		
 		for(int i = 0; i < s1.length(); i++){
 			alphabetsArr[s1.charAt(i)]++;

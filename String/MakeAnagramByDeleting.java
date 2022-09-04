@@ -25,7 +25,6 @@ k from S1.
 Your Task:
 Complete the function remAnagram() which takes two strings S1, S2 as input parameter, and returns minimum characters needs to be deleted.
 */
-import java.util.*;
 
 class MakeAnagramByDeleting{
 	//O(n) & O(1)

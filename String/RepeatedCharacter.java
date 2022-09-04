@@ -21,8 +21,6 @@ You don't need to read input or print anything.
 Your task is to complete the function firstRep() which takes the string S as input and 
 returns the the first repeating character in the string. In case there's no repeating character present, return '#'.
 */
-import java.util.*;
-
 class RepeatedCharacter{
 	
 	static char firstRep(String str){
