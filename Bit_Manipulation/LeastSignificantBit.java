@@ -1,8 +1,7 @@
 public class LeastSignificantBit {
     static int lsb(int n) {
-        int index = (int) (Math.log(n & -n) / Math.log(2)) +1;
-        // System.out.println(index);
-        return  index;
+        int right = (int) (Math.log(n & -n) / Math.log(2)) +1;
+        return right;
     }
 
     public static void main(String[] args) {
