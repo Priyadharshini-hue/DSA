@@ -7,6 +7,7 @@ Each number in nums is unique and lies from 1 to n.
 Find the number that is missing from the list.
  */
 class MissingNumber {
+
     static int findNumber(int[] nums) {
         // Initialize sum
         int sum = 0;
