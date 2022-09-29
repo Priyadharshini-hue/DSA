@@ -3,11 +3,11 @@ Linear Search - O(n), O(n)
  */
 class LinearSearchRecursiveApproach {
     public static int search(int[] arr, int size, int elementToFind) {
-        if (size == 0) {
+        if (size == -1) {
             return -1;
         }
-        if (arr[size - 1] == elementToFind) {
-            return size - 1;
+        if (arr[size] == elementToFind) {
+            return size;
         }
         return search(arr, size - 1, elementToFind);
     }
@@ -17,6 +17,6 @@ class LinearSearchRecursiveApproach {
 
         int elementToFind = 2;
 
-        System.out.println(search(arr, arr.length, elementToFind));
+        System.out.println(search(arr, arr.length - 1, elementToFind));
     }
 }
