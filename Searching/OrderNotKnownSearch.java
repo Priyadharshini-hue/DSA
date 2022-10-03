@@ -5,26 +5,45 @@ Though we know that the array is sorted, we don’t know if it’s sorted in asc
 */
 class OrderNotKnownSearch {
     static int search(int[] arr, int elementToFind) {
+
         int start = 0, end = arr.length - 1;
+
+        // Check if the array is in ascending order
         if (arr[0] < arr[arr.length - 1]) {
+
             while (start <= end) {
                 int mid = start + (end - start) / 2;
+
+                // Check if the elementToFind is present at mid
                 if (arr[mid] == elementToFind) {
                     return mid;
-                } else if (arr[mid] > elementToFind) {
-                    end = mid - 1;
-                } else {
+                }
+                // If the elementToFind is greater than left half, then ignore it.
+                else if (arr[mid] < elementToFind) {
                     start = mid + 1;
                 }
+                // If the elementToFind is lesser than right half, then ignore it.
+                else {
+                    start = mid - 1;
+                }
             }
-        } else {
+        }
+        // If the array is in descending order
+        else {
             while (start <= end) {
+
                 int mid = start + (end - start) / 2;
+
+                // Check if the elementToFind is present at mid
                 if (arr[mid] == elementToFind) {
                     return mid;
-                } else if (arr[mid] < elementToFind) {
+                }
+                // If the elementToFind is greater than left half, then ignore the right half.
+                else if (arr[mid] < elementToFind) {
                     end = mid - 1;
-                } else {
+                }
+                // If the elementToFind is lesser than right half, then ignore the left half.
+                else {
                     start = mid + 1;
                 }
             }
@@ -35,7 +54,7 @@ class OrderNotKnownSearch {
     public static void main(String[] args) {
         int[] arr = { 5, 3, 2, 1, 0 };
 
-        int elementToFind = 1;
+        int elementToFind = 3;
 
         System.out.print(search(arr, elementToFind));
     }
