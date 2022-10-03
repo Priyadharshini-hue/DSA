@@ -22,13 +22,12 @@ class SearchReverseSorted {
             if (arr[mid] == elementToFind) {
                 return mid;
             }
-            // Check if the elementToFind is less than the left half, then ignore the left
+            // If the elementToFind is greater than the left half, then ignore the right
             // half
             else if (arr[mid] < elementToFind) {
                 end = mid - 1;
             }
-            // If the elementToFind is greater than the right half, then ignore the right
-            // half
+            // If the elementToFind is lesser than the right half, then ignore the left half
             else {
                 start = mid + 1;
             }
