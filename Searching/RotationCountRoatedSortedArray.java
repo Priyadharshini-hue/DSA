@@ -1,5 +1,6 @@
 /*
-Rotation Count in Rotated Sorted array
+Rotation Count in Rotated Sorted array / Minimum element in rotated sorted array
+
 Given an ascending sorted rotated array Arr of distinct integers of size N. 
 The array is right rotated K times. Find the value of K.
 Input:
@@ -28,13 +29,13 @@ public class RotationCountRoatedSortedArray {
             // Check if the mid is greater than its next element,
             // then return mid+1
             if (arr[mid] > arr[mid + 1]) {
-                return mid + 1;
+                return mid + 1; // arr[mid+1]
             }
 
-            // Check if the mid is greater than its previous element,
+            // Check if the mid is lesser than its previous element,
             // then return mid
-            if (arr[mid + 1] < arr[mid]) {
-                return mid;
+            if (arr[mid - 1] > arr[mid]) {
+                return mid; // arr[mid]
             }
 
             // Check if the left half is sorted, then ignore the left half
