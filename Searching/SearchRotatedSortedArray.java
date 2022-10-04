@@ -1,5 +1,5 @@
 /*
-Search Rotated Sorted Array
+Search in Rotated Sorted Array
 Given a list of unique integers which are sorted but rotated at some pivot.
 Given a target value and have to find its index in the list.
 -1 if the target value is not present.
@@ -15,28 +15,34 @@ class SearchRotatedSortedArray {
 
         // Binary search
         while (start <= end) {
-            // Find the mid
+
             int mid = start + (end - start) / 2;
 
-            // Check if the mid element equals target
+            // Check if the target is present in mid element.
             if (arr[mid] == target) {
                 return mid;
             }
 
-            // Check if the start element is equal to less than the mid element
+            // Check if left half is sorted (ascending order)
             if (arr[start] <= arr[mid]) {
-                // Check if the target is between the start(includes) and mid element
-                if ((arr[start] <= target) && (target < arr[mid])) {
-                    end = mid - 1;
-                } else {
+                // Check if the target is less than left half, then ignore left half
+                if (arr[mid] > target) {
                     start = mid + 1;
                 }
-            } else {
-                // Check if the target is between the mid and end(includes) element.
-                if ((arr[mid] < target) && (target <= arr[end])) {
-                    start = mid + 1;
-                } else {
+                // If the target is within the range
+                else {
                     end = mid - 1;
+                }
+            }
+            // If the right half is sorted
+            else {
+                // Check if the target is greater than right half, then ignore right half
+                if (target > arr[mid]) {
+                    end = mid - 1;
+                }
+                // If the target is within the range
+                else {
+                    start = mid + 1;
                 }
             }
         }
