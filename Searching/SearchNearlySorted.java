@@ -1,5 +1,5 @@
 /*
-Given a nearly sorted array such that each of the n elements may be misplaced by 
+Given a nearly / mostly sorted array such that each of the n elements may be misplaced by 
 no more than one position from the correct sorted order, search a given element in it efficiently. 
 If the element is not present in the array.
 
