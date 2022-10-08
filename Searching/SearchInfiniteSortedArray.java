@@ -11,11 +11,11 @@ class SearchInfiniteSortedArray {
         while (elementToFind > arr[end]) {
             start = end;
             // To avoid indexOutOfBoundsException
-            if (end * 2 > arr.length - 1) {
+           // if (end * 2 > arr.length - 1) {
                 end = end * 2;
-            } else {
-                end = arr.length - 1;
-            }
+            // } else {
+                // end = arr.length - 1;
+            // }
         }
 
         while (start <= end) {
@@ -39,7 +39,7 @@ class SearchInfiniteSortedArray {
 
     public static void main(String[] args) {
         int[] arr = { 1, 2, 8, 10, 11, 12, 19, 22, 25, 27, 29, 42 };
-        int target = 9;
+        int target = 19;
         System.out.print(search(arr, target));
     }
 }
