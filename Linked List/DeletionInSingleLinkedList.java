@@ -32,18 +32,19 @@ class LinkedList {
         }
     }
 
-    void deleteAtStart() {
+    Node deleteAtStart(Node head) {
         // If the list is empty
         if (head == null) {
             System.out.println("List is empty");
-            return;
+            return head;
         } else {
             // Unlink the current head node
             head = head.next;
         }
+        return head;
     }
 
-    void deleteAtEnd() {
+    void deleteAtEnd(Node head) {
         // If the list is empty
         if (head == null) {
             System.out.println("List is empty");
@@ -58,7 +59,7 @@ class LinkedList {
         }
     }
 
-    void deleteAtMiddle() {
+    void deleteAtMiddle(Node head) {
         // If the list is empty
         if (head == null) {
             System.out.println("list is empty");
@@ -85,8 +86,14 @@ class LinkedList {
         } else {
             Node currentNode = head, previousNode = null;
 
+            // If the head node holds the key to be deleted
+            while (currentNode != null && key == currentNode.data) {
+                head = currentNode.next; // change head
+                return;
+            }
+
             // Travrerse the list to find the key node
-            while (currentNode.data != key && currentNode != null) {
+            while (currentNode != null && currentNode.data != key) {
                 previousNode = currentNode;
                 currentNode = currentNode.next;
             }
@@ -101,7 +108,7 @@ class LinkedList {
         }
     }
 
-    void print() {
+    void print(Node head) {
         // If the list is empty
         if (head == null) {
             System.out.println("List is empty");
@@ -125,7 +132,7 @@ public class DeletionInSingleLinkedList {
         LinkedList list = new LinkedList();
 
         try (// Insert nodes at end
-        Scanner s = new Scanner(System.in)) {
+                Scanner s = new Scanner(System.in)) {
             int t = s.nextInt();
             while (t > 0) {
                 int data = s.nextInt();
@@ -133,22 +140,22 @@ public class DeletionInSingleLinkedList {
                 t--;
             }
         }
-        list.print();
+        list.print(list.head);
 
         // Delete a node from the beginning
-        list.deleteAtStart();
-        list.print();
+        list.head = list.deleteAtStart(list.head);
+        list.print(list.head);
 
         // Delete a node from the end
-        list.deleteAtEnd();
-        list.print();
+        list.deleteAtEnd(list.head);
+        list.print(list.head);
 
         // Delete a node from the middle
-        list.deleteAtMiddle();
-        list.print();
+        list.deleteAtMiddle(list.head);
+        list.print(list.head);
 
         // Delete a given element from list
         list.deleteGivenElement(3);
-        list.print();
+        list.print(list.head);
     }
 }
