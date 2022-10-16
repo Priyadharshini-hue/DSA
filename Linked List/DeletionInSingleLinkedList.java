@@ -84,6 +84,12 @@ class LinkedList {
             System.out.println("List is empty");
             return;
         } else {
+            /*
+             * // Assign that not having access to head node
+             * Node temp = node.next;
+             * node.data=temp.data;
+             * node.next=temp.next;
+             */
             Node currentNode = head, previousNode = null;
 
             // If the head node holds the key to be deleted
