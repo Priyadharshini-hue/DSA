@@ -12,65 +12,44 @@ Output: 1
 */
 class FrequencyOfElement {
 
-  static int getFrequencyOfElement(int[] arr, int target) {
-
-    // Initialize startIndex and endIndex
-    int startIndex = -1, endIndex = -1;
-
-    // To Find the start index of target
-    int start = 0, end = arr.length - 1;
+  static int search(int[] arr, int k) {
+    int start = 0, end = arr.length - 1, mid;
 
     while (start <= end) {
-      int mid = start + (end - start) / 2;
-
-      // Check if the target is present at mid
-      // then store the index in startIndex and ignore the right half
-      if (arr[mid] == target) {
-        startIndex = mid;
+      mid = start + ((end - start) / 2);
+      if (arr[mid] == k) {
+        return mid;
+      } else if (arr[mid] > k) {
         end = mid - 1;
-      }
-      // If the target is greater than left half, then ignore left half
-      else if (arr[mid] < target) {
+      } else {
         start = mid + 1;
       }
-      // If the target is lesser than right half, then ignore right half
-      else {
-        end = mid - 1;
-      }
     }
-    // Check if the the element is present in array
-    if (startIndex == -1) {
-      return 0;
-    }
-
-    // To Find the end index of target
-    start = 0;
-    end = arr.length - 1;
-
-    while (start <= end) {
-      int mid = start + (end - start) / 2;
-
-      // Check if the target is present at mid
-      // then store the index in endIndex and ignore the left half
-      if (arr[mid] == target) {
-        endIndex = mid;
-        start = mid + 1;
-      }
-      // If the target is greater than left half, then ignore left half
-      else if (arr[mid] < target) {
-        start = mid + 1;
-      }
-      // If the target is lesser than right half, then ignore right half
-      else {
-        end = mid - 1;
-      }
-    }
-    return endIndex - startIndex + 1;
+    return -1;
   }
 
   public static void main(String[] args) {
-    int arr[] = { 1, 1, 2, 2, 2, 2, 3 };
-    int target = 4;
-    System.out.print(getFrequencyOfElement(arr, target));
+    int[] arr = { 11, 22, 33, 33, 33, 33, 33, 33, 33, 44, 55, 66, 77 };
+    int k = 33;
+
+    int index = search(arr, k), count = 1;
+
+    if (index == -1) {
+      System.out.println("Not present");
+    }
+
+    int left = index - 1;
+    while (left >= 0 && arr[left] == k) {
+      count++;
+      left--;
+    }
+
+    int right = index + 1;
+    while (right <= arr.length - 1 && arr[right] == k) {
+      count++;
+      right++;
+    }
+
+    System.out.println(count); // 7
   }
 }
