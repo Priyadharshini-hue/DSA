@@ -9,32 +9,29 @@ arr[] = {1,2,8,10,11,12,19}
 Output: 1
 Explanation: Largest Number less than 5 is 2 (i.e K = 2), whose index is 1(0-based indexing). 
 */
-class LowerBound {
-    static int search(int[] arr, int target) {
-
-        int lowerboundIndex = -1, start = 0, end = arr.length - 1;
+public class LowerBound {
+    static int findLowerBound(int[] arr, int k) {
+        int start = 0, end = arr.length - 1, mid, ans = -1;
 
         while (start <= end) {
-            int mid = start + (end - start) / 2;
+            mid = start + ((end - start) / 2);
 
-            // Check if the target is present at mid or greater than left half, then ignore
-            // the left half
-            if (arr[mid] <= target) {
-                lowerboundIndex = mid;
+            if (arr[mid] == k) {
+                return arr[mid];
+            } else if (k < arr[mid]) {
+                end = mid - 1;
+            } else {
+                ans = arr[mid];
                 start = mid + 1;
             }
-            // If the target is lesser than the mid element, then ignore right half
-            else {
-                end = mid - 1;
-            }
         }
-        return lowerboundIndex;
+        return ans;
     }
 
     public static void main(String[] args) {
-        int arr[] = { 1, 2, 8, 10, 11, 12, 19 };
-        int target = 5;
+        int[] arr = {11, 22, 33, 44, 55, 66, 77};
+        int k = 45;
 
-        System.out.print(search(arr, target));
+        System.out.println(findLowerBound(arr, k)); //44
     }
 }
