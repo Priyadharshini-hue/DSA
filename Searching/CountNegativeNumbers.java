@@ -1,5 +1,3 @@
-package BinarySearch.part1;
-
 public class CountNegativeNumbers {
      static  int count(int[]arr, int length){
           int count=0,start=0,end=arr.length-1,mid;
