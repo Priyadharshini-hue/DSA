@@ -8,31 +8,29 @@ For x = 1:    floor  = 1,  ceil  = 1
 For x = 5:    floor  = 2,  ceil  = 8
 For x = 20:   floor  = 19,  ceil doesn't exist in array
 */
-class UpperBound {
-    static int search(int[] arr, int target) {
-        int ans = -1, start = 0, end = arr.length - 1;
+public class UpperBound {
+    static int findUpperBound(int[] arr, int k) {
+        int start = 0, end = arr.length - 1, mid, ans = -1;
 
         while (start <= end) {
-            int mid = start + (end - start) / 2;
-
-            // Check if the target is present at the mid or less than the target, ignore
-            // right half and store the mid value in ans
-            if (arr[mid] >= target) {
-                ans = mid;
+            mid = start + ((end - start) / 2);
+            if (arr[mid] == k) {
+                return arr[mid];
+            } else if (k < arr[mid]) {
+                ans = arr[mid];
                 end = mid - 1;
-            }
-            // If the target is greater than left half, then ignore the left half
-            else {
+            } else {
                 start = mid + 1;
             }
         }
+
         return ans;
     }
 
     public static void main(String[] args) {
-        int arr[] = { 1, 2, 8, 10, 11, 12, 19 };
-        int target = 23;
+        int[] arr = {11, 22, 33, 44, 55, 66, 77};
+        int k = 74;
 
-        System.out.print(search(arr, target));
+        System.out.println(findUpperBound(arr, k)); //77
     }
 }
