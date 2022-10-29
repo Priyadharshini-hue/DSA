@@ -1,5 +1,3 @@
-package BinarySearch.part3;
-
 import java.util.Arrays;
 
 /*
