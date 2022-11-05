@@ -1,31 +1,37 @@
-/* 
-Bubble Sorting / sinking sort
-O(n2) & O(1)
-best cace - O(n)
-In-place, stable, adaptive(deplends on initial input's sequential order)
-*/
-import java.util.*;
+import java.util.Arrays;
+import java.util.Scanner;
 
-class BubbleSort{
-	public static void main(String[] args){
-	
-		int[] arr = {2,4,3,5,1,7};
-		
-		for(int i = 0; i < arr.length - 1; i++){ // n-1 iterations
-			boolean swapped = false;
-			for(int j = 0; j < arr.length - i - 1; j++){
-				if( arr[j] > arr[j+1] ){
-					int t = arr[j];
-					arr[j] = arr[j+1];
-					arr[j+1] = t;
-					swapped = true;
-				}
-			}
-			// flag for optimized bubble sort
-			if(!swapped){
-				break;
-			}
-		}
-		System.out.println(Arrays.toString(arr));
-	}
+public class BubbleSort {
+    static void sort(int[] arr) {
+        int temp;
+        for (int j = 0; j < arr.length - 1; j++) {
+            boolean flag = true;
+            for (int i = 0; i < arr.length - j - 1; i++) {
+                if (arr[i] > arr[i + 1]) {
+                    temp = arr[i + 1];
+                    arr[i + 1] = arr[i];
+                    arr[i] = temp;
+                    flag = false;
+                }
+            }
+            if (flag) {
+                break;
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        try (Scanner s = new Scanner(System.in)) {
+            int length = s.nextInt();
+            int[] arr = new int[length];
+
+            for (int i = 0; i < length; i++) {
+                arr[i] = s.nextInt();
+            }
+
+            sort(arr);
+
+            System.out.println(Arrays.toString(arr));
+        }
+    }
 }
