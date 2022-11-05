@@ -1,77 +1,68 @@
-/*
-Merge Sort
+import java.util.Arrays;
+import java.util.Scanner;
 
-O(n logn) & O(n)
+public class MergeSort {
+    static void sort(int[] arr, int start, int mid, int end) {
+        int[] leftArray = new int[mid - start + 1];
+        int[] rightArray = new int[end - mid];
 
-out-place, stable, non-adaptive
-*/
+        for (int i = 0; i < leftArray.length; i++) {
+            leftArray[i] = arr[start + i];
+        }
 
-import java.util.*;
+        for (int i = 0; i < rightArray.length; i++) {
+            rightArray[i] = arr[mid + 1 + i];
+        }
 
-class MergeSort {
+        int k = start, i = 0, j = 0;
 
-	// Divivde the array into two subarrays, sort them and merge them
-	static void mergeSort(int start, int end, int[] arr) {
+        while (i < leftArray.length && j < rightArray.length) {
+            if (leftArray[i] < rightArray[j]) {
+                arr[k] = leftArray[i];
+                i++;
+            } else {
+                arr[k] = rightArray[j];
+                j++;
+            }
+            k++;
+        }
 
-		if (start < end) {
-			// mid is the point where the array is divided into two subarrays
-			int mid = (start + end) / 2;
+        while (i < leftArray.length) {
+            arr[k] = leftArray[i];
+            i++;
+            k++;
+        }
 
-			mergeSort(start, mid, arr);
-			mergeSort(mid + 1, end, arr);
+        while (j < rightArray.length) {
+            arr[k] = rightArray[j];
+            j++;
+            k++;
+        }
+    }
 
-			// Merge the sorted array
-			sort(start, mid, end, arr);
-		}
-	}
+    static void mergeSort(int[] arr, int start, int end) {
+        if (start < end) {
+            int mid = (start) + (end - start) / 2;
 
-	static void sort(int start, int mid, int end, int[] arr) {
+            mergeSort(arr, start, mid);
+            mergeSort(arr, mid + 1, end);
 
-		// Initialize leftArray --> [start....mid] , rightArray --> [mid+1.....end]
-		int[] leftArray = new int[mid - start + 1];
-		int[] rightArray = new int[end - mid];
+            sort(arr, start, mid, end);
+        }
+    }
 
-		for (int i = 0; i < leftArray.length; i++) {
-			leftArray[i] = arr[start + i];
-		}
+    public static void main(String[] args) {
+        try (Scanner s = new Scanner(System.in)) {
+            int length = s.nextInt();
+            int[] arr = new int[length];
 
-		for (int i = 0; i < rightArray.length; i++) {
-			rightArray[i] = arr[mid + 1 + i];
-		}
+            for (int i = 0; i < length; i++) {
+                arr[i] = s.nextInt();
+            }
 
-		// i, j, k to track the current index of the sub arrays and array
-		int i = 0, j = 0, k = start;
+            mergeSort(arr, 0, arr.length - 1);
 
-		// Loop until the either of the subarrays reach the end
-		while (i < leftArray.length && j < rightArray.length) {
-			if (leftArray[i] <= rightArray[j]) {
-				arr[k] = leftArray[i];
-				i++;
-			} else {
-				arr[k] = rightArray[j];
-				j++;
-			}
-			k++;
-		}
-
-		// When all the elements are traversed in either of the subarrays
-		// Pickup the remaining elements and put in the sorted array
-		while (i < leftArray.length) {
-			arr[k] = leftArray[i];
-			i++;
-		}
-		while (j < rightArray.length) {
-			arr[k] = rightArray[j];
-			j++;
-		}
-	}
-
-	public static void main(String[] args) {
-
-		int[] arr = { 4, 2, 5, 9, 1, 10, 0 };
-
-		mergeSort(0, arr.length - 1, arr);
-
-		System.out.println(Arrays.toString(arr));
-	}
+            System.out.println(Arrays.toString(arr));
+        }
+    }
 }
