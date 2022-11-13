@@ -1,10 +1,18 @@
 import java.util.Scanner;
 
-class LinkedList {
-    Node head;
+class Node {
+    int data;
+    Node next;
 
+    Node(int t) {
+        data = t;
+        next = null;
+    }
+}
+
+public class LoopStartingPoint {
     // Insert at end
-    void insertAtEnd(int data) {
+    static Node insertAtEnd(Node head, int data) {
         Node node = new Node(data);
 
         if (head == null) {
@@ -16,72 +24,68 @@ class LinkedList {
             }
             currentNode.next = node;
         }
+        return head;
     }
 
-    void createCycle(int k) {
-        if (k < 0)
-            return;
-
+    static void loopCreation(Node head, int k) {
         int count = 1;
         Node currNode = head, ptr = head;
-
         while (currNode.next != null) {
-            if (k != count) {
-                count++;
-                ptr = ptr.next;
+            if (k == count) {
+                ptr = currNode;
             }
+            count++;
             currNode = currNode.next;
         }
         currNode.next = ptr;
     }
 
-    Node detectStartingPointOfLoop() {
+    static Node detectStartingPointOfLoop(Node head) {
 
         if (head == null || head.next == null)
             return null;
 
-        Node slowPtr = head.next, fastPtr = head.next.next,
+        Node slowPtr = head, fastPtr = head,
                 entryNode = head;
 
         // Check loop presence
-        while (fastPtr != null && fastPtr.next != null) {
+        while (fastPtr.next != null && fastPtr.next.next != null) {
+            slowPtr = slowPtr.next;
+            fastPtr = fastPtr.next.next;
             if (fastPtr == slowPtr) {
                 break;
             }
-            slowPtr = slowPtr.next;
-            fastPtr = fastPtr.next.next;
         }
 
         // If no loop
-        if (fastPtr == null || fastPtr.next == null) {
+        if (fastPtr.next == null || fastPtr.next.next == null) {
             return null;
         }
 
-        // Starting point
-        while (entryNode != slowPtr) {
-            entryNode = entryNode.next;
-            slowPtr = slowPtr.next;
-        }
-
-        return entryNode;
-    }
-}
-
-public class LoopStartingPoint {
-    public static void main(String[] args) {
-        LinkedList list = new LinkedList();
-
-        try (Scanner s = new Scanner(System.in)) {
-            int limit = s.nextInt();
-
-            for (int i = 0; i < limit; i++) {
-                int data = s.nextInt();
-                list.insertAtEnd(data);
+        // Starting point-head
+        if (entryNode == slowPtr) {
+            return entryNode;
+        } else {
+            while (entryNode != slowPtr) {
+                entryNode = entryNode.next;
+                slowPtr = slowPtr.next;
             }
+            return entryNode;
         }
+    }
 
-        list.createCycle(2);
+    public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
+        
+        Node head = null;
+        int length = 5;
+        while (length != 0) {
+            int t1 = s.nextInt();
+            head = insertAtEnd(head, t1);
+            length--;
+        }
+        loopCreation(head, 1);
 
-        System.out.println(list.detectStartingPointOfLoop().data);
+        System.out.println(detectStartingPointOfLoop(head).data);
     }
 }
