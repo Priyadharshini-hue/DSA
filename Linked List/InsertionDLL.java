@@ -11,11 +11,9 @@ class Node {
     }
 }
 
-class LinkedList {
-    Node head;
-
+public class InsertionDLL {
     // Insert at end
-    void insertAtEnd(int data) {
+    static Node insertAtEnd(Node head, int data) {
         Node node = new Node(data);
 
         if (head == null) {
@@ -28,10 +26,11 @@ class LinkedList {
             currentNode.next = node;
             node.prev = currentNode;
         }
+        return head;
     }
 
     // Insert at start
-    void insertAtStart(int data) {
+    static Node insertAtStart(Node head, int data) {
         Node node = new Node(data);
 
         if (head == null) {
@@ -41,9 +40,10 @@ class LinkedList {
             head.prev = node;
             head = node;
         }
+        return head;
     }
 
-    void insertAtMiddle(int data) {
+    static void insertAtMiddle(Node head, int data) {
         Node node = new Node(data);
 
         if (head == null) {
@@ -64,11 +64,11 @@ class LinkedList {
         node.next.prev = node;
     }
 
-    void insertAtKthPosition(int data, int k) {
+    static Node insertAtKthPosition(Node head, int data, int k) {
         Node node = new Node(data);
 
         if (k == 0) {
-            return;
+            return head;
         }
 
         // head insertion if k is 1
@@ -76,31 +76,23 @@ class LinkedList {
             node.next = head;
             head.prev = node;
             head = node;
-            return;
+            return head;
         }
-
         Node currentNode = head, prevNode = null;
-        while (1 < k && currentNode != null) {
-            prevNode = currentNode;
+        int count = 1;
+
+        while (currentNode != null) {
+            if (count == k - 1) {
+                prevNode = currentNode;
+                break;
+            }
             currentNode = currentNode.next;
-            k--;
+            count++;
         }
 
-        if (currentNode == null & k > 1) {
-            return;
+        if (currentNode == null) {
+            return head;
         }
-
-        // After k
-        // Node currentNode = head, prevNode = null;
-        // while (1 <= k && currentNode != null) {
-        // prevNode = currentNode;
-        // currentNode = currentNode.next;
-        // k--;
-        // }
-
-        // if (currentNode == null & k >1) {
-        // return;
-        // }
 
         node.next = prevNode.next;
         node.prev = prevNode;
@@ -109,15 +101,15 @@ class LinkedList {
         if (node.next != null) {
             node.next.prev = node;
         }
+        return head;
     }
 
     // Print the list
-    void print() {
-        Node currentNode = head;
-
+    static void print(Node head) {
         if (head == null) {
             return;
         } else {
+            Node currentNode = head;
             while (currentNode != null) {
                 System.out.print(currentNode.data + " ");
                 currentNode = currentNode.next;
@@ -125,31 +117,30 @@ class LinkedList {
         }
         System.out.println(" ");
     }
-}
 
-public class InsertionDLL {
     public static void main(String[] args) {
-        LinkedList list = new LinkedList();
+        Scanner s = new Scanner(System.in);
 
-        try (Scanner s = new Scanner(System.in)) {
-            int limit = s.nextInt();
-
-            for (int i = 0; i < limit; i++) {
-                int data = s.nextInt();
-                list.insertAtEnd(data);
-            }
+        Node head = null;
+        int length = 5;
+        while (length != 0) {
+            int t1 = s.nextInt();
+            head = insertAtEnd(head, t1);
+            length--;
         }
+
         System.out.println("----------end-------------");
-        list.print();
+        print(head);
         System.out.println("-----------start------------");
-        list.insertAtStart(0);
-        list.print();
+        head = insertAtStart(head, 0);
+        print(head);
         System.out.println("-----------middle------------");
-        list.insertAtMiddle(0);
-        list.print();
+        insertAtMiddle(head, 0);
+        print(head);
+        // index start from 1
         System.out.println("-----------kth------------");
-        list.insertAtKthPosition(100, 8);
-        list.print();
+        head = insertAtKthPosition(head, 100, 5);
+        print(head);
         System.out.println("-----------------------");
     }
 }
