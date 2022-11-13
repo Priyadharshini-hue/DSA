@@ -1,10 +1,18 @@
 import java.util.Scanner;
 
-class LinkedList {
-    Node head;
+class Node {
+    int data;
+    Node next;
 
-    // Insert at end
-    void insertAtEnd(int data) {
+    Node(int t) {
+        data = t;
+        next = null;
+    }
+}
+
+public class LoopDetection {
+
+    static Node insertAtEnd(Node head, int data) {
         Node node = new Node(data);
 
         if (head == null) {
@@ -16,63 +24,55 @@ class LinkedList {
             }
             currentNode.next = node;
         }
+        return head;
     }
 
-    void createCycle(int k) {
+    static void loopCreation(Node head, int k) {
+        Node currentNode = head, ptrNode = head;
+        int ptr = 1;
 
-        // no loop
-        if (k < 0)
-            return;
-
-        int count = 0;
-        Node currNode = head, ptr = head;
-
-        while (currNode.next != null) {
-            if (k != count) {
-                count++;
-                ptr = ptr.next;
+        while (currentNode.next != null) {
+            if (ptr == k) {
+                ptrNode = currentNode;
             }
-            currNode = currNode.next;
+            currentNode = currentNode.next;
+            ptr++;
         }
-        currNode.next = ptr;
+        currentNode.next = ptrNode;
     }
 
-    boolean detectLoop() {
+    static boolean detectLoop(Node head) {
         if (head == null || head.next == null)
             return false;
 
-        Node slowPtr = head.next, fastPtr = head.next.next;
+        Node slowPtr = head, fastPtr = head;
 
         // Check loop presence
-        while (fastPtr != null && fastPtr.next != null) {
+        while (fastPtr.next != null && fastPtr.next.next != null) {
+            slowPtr = slowPtr.next;
+            fastPtr = fastPtr.next.next;
             if (slowPtr == fastPtr) {
                 return true;
             }
-            slowPtr = slowPtr.next;
-            fastPtr = fastPtr.next.next;
         }
 
         // if no loop is present
         return false;
     }
-}
 
-public class LoopDetection {
     public static void main(String[] args) {
-        LinkedList list = new LinkedList();
-
-        try (Scanner s = new Scanner(System.in)) {
-            int limit = s.nextInt();
-
-            for (int i = 0; i < limit; i++) {
-                int data = s.nextInt();
-                list.insertAtEnd(data);
-            }
+        Scanner s = new Scanner(System.in);
+        
+        Node head = null;
+        int length = 5;
+        while (length != 0) {
+            int t1 = s.nextInt();
+            head = insertAtEnd(head, t1);
+            length--;
         }
 
-        list.createCycle(1);
+        loopCreation(head, 2);
 
-        System.out.println(list.head.next.next.next.next.next.data);
-        System.out.println(list.detectLoop());
+        System.out.println(detectLoop(head));
     }
 }
