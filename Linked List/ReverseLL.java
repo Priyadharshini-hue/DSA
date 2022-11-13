@@ -1,10 +1,31 @@
 import java.util.Scanner;
 
-class LinkedList {
-    Node head;
+class Node {
+    int data;
+    Node next;
 
-    // Insert at end
-    void insertAtEnd(int data) {
+    Node(int t) {
+        data = t;
+        next = null;
+    }
+}
+
+public class ReverseLL {
+    // Print the list
+    static void print(Node head) {
+        if (head == null) {
+            return;
+        } else {
+            Node currentNode = head;
+            while (currentNode != null) {
+                System.out.print(currentNode.data + " ");
+                currentNode = currentNode.next;
+            }
+        }
+        System.out.println(" ");
+    }
+
+    static Node insertAtEnd(Node head, int data) {
         Node node = new Node(data);
 
         if (head == null) {
@@ -16,88 +37,47 @@ class LinkedList {
             }
             currentNode.next = node;
         }
-    }
-
-    // Reverse a list - iterative
-  /*void reverseList() {
-    Node currentNode=head,nextNode=null,prevNode=null;
-
-    if(head==null){
-    return;
-    }
-
-    while (currentNode!=null) {
-    nextNode=currentNode.next;
-    currentNode.next=prevNode;
-    prevNode=currentNode;
-    currentNode=nextNode;
-    }
-    head=prevNode;
-    }*/    
-
-    // Reverse a list - recursive
-   /*Node reverseList(Node node) {
-    if (node == null || node.next == null) {
-    return node;
-    }
-
-    Node rest = reverseList(node.next);
-    node.next.next = node;
-
-    node.next = null;
-
-    return rest;
-    }*/
-
-    // Tail Recursive Method
-    Node reverseList(Node currentNode, Node prevNode) {
-        if (head == null) {
-            return head;
-        }
-        if (currentNode.next == null) {
-            head = currentNode;
-            currentNode.next = prevNode;
-            return head;
-        }
-        Node nextNode = currentNode.next;
-        currentNode.next = prevNode;
-        reverseList(nextNode, currentNode);
         return head;
     }
 
-    void print() {
-        Node currentNode = head;
-
-        if (head == null) {
-            return;
-        } else {
-            while (currentNode != null) {
-                System.out.print(currentNode.data + " ");
-                currentNode = currentNode.next;
-            }
+    // iterative
+    static Node reverse(Node head) {
+        Node prevNode = null, currentNode = head,
+                nextNode = null;
+        while (currentNode != null) {
+            nextNode = currentNode.next;
+            currentNode.next = prevNode;
+            prevNode = currentNode;
+            currentNode = nextNode;
         }
-        System.out.println(" ");
+        return prevNode;
     }
-}
 
-public class ReverseLL {
-    public static void main(String[] args) {
-        LinkedList list = new LinkedList();
-
-        try (Scanner s = new Scanner(System.in)) {
-            int limit = s.nextInt();
-
-            for (int i = 0; i < limit; i++) {
-                int data = s.nextInt();
-                list.insertAtEnd(data);
-            }
+    // recursive - divide and conqeuer
+    static Node reverse1(Node head) {
+        if (head == null || head.next == null) {
+            return head;
         }
+        Node newHeadNode = reverse1(head.next);
 
-        // list.reverseList();
-        // Node head = list.reverseList(list.head);
+        head.next.next = head;
+        head.next = null;
+        return newHeadNode;
+    }
 
-        Node head = list.reverseList(list.head, null);
-        list.head = head;
-        list.print();
+    public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
+
+        Node head = null;
+        int length = 5;
+        while (length != 0) {
+            int t1 = s.nextInt();
+            head = insertAtEnd(head, t1);
+            length--;
+        }
+        head = reverse(head);
+        print(head);
+        head = reverse1(head);
+        print(head);
     }
 }
