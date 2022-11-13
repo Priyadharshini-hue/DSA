@@ -1,10 +1,17 @@
 import java.util.Scanner;
 
-class LinkedList {
-    Node head;
+class Node {
+    int data;
+    Node next;
 
-    // Insert at end
-    void insertAtEnd(int data) {
+    Node(int t) {
+        data = t;
+        next = null;
+    }
+}
+
+public class LoopLength {
+    static Node insertAtEnd(Node head, int data) {
         Node node = new Node(data);
 
         if (head == null) {
@@ -16,47 +23,43 @@ class LinkedList {
             }
             currentNode.next = node;
         }
+        return head;
     }
 
-    void createCycle(int k) {
+    static void loopCreation(Node head, int k) {
+        Node currentNode = head, ptrNode = head;
+        int ptr = 1;
 
-        // no loop
-        if (k < 0)
-            return;
-
-        int count = 1;
-        Node currNode = head, ptr = head;
-
-        while (currNode.next != null) {
-            if (k != count) {
-                count++;
-                ptr = ptr.next;
+        while (currentNode.next != null) {
+            if (ptr == k) {
+                ptrNode = currentNode;
             }
-            currNode = currNode.next;
+            ptr++;
+            currentNode = currentNode.next;
         }
-        currNode.next = ptr;
+        currentNode.next = ptrNode;
     }
 
-    int findLoopLength() {
+    static int findLoopLength(Node head) {
 
         if (head == null || head.next == null)
             return 0;
 
-        Node slowPtr = head.next, fastPtr = head.next.next,
+        Node slowPtr = head, fastPtr = head,
                 entryNode = head;
 
         // Check loop presence
-        while (fastPtr != null && fastPtr.next != null) {
+        while (fastPtr.next != null && fastPtr.next.next != null) {
+            slowPtr = slowPtr.next;
+            fastPtr = fastPtr.next.next;
             if (slowPtr == fastPtr) {
                 break;
             }
-            slowPtr = slowPtr.next;
-            fastPtr = fastPtr.next.next;
         }
 
         // If no loop
-        if (fastPtr == null || fastPtr.next == null) {
-            return -1;
+        if (fastPtr.next == null || fastPtr.next.next == null) {
+            return 0;
         }
 
         // Starting point of loop
@@ -72,26 +75,22 @@ class LinkedList {
             count++;
             slowPtr = slowPtr.next;
         }
-
         return count;
     }
-}
 
-public class LoopLength {
     public static void main(String[] args) {
-        LinkedList list = new LinkedList();
-
-        try (Scanner s = new Scanner(System.in)) {
-            int limit = s.nextInt();
-
-            for (int i = 0; i < limit; i++) {
-                int data = s.nextInt();
-                list.insertAtEnd(data);
-            }
+        Scanner s = new Scanner(System.in);
+        
+        Node head = null;
+        int length = 5;
+        while (length != 0) {
+            int t1 = s.nextInt();
+            head = insertAtEnd(head, t1);
+            length--;
         }
 
-        list.createCycle(3);
+        loopCreation(head, 2);
 
-        System.out.println(list.findLoopLength());
+        System.out.println(findLoopLength(head));
     }
 }
