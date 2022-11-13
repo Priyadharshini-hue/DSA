@@ -10,11 +10,8 @@ class Node {
     }
 }
 
-class LinkedList {
-    Node head;
-
-    // Insert at end
-    void insertAtEnd(int data) {
+public class DeletionDLL {
+    static Node insertAtEnd(Node head, int data) {
         Node node = new Node(data);
 
         if (head == null) {
@@ -27,10 +24,11 @@ class LinkedList {
             currentNode.next = node;
             node.prev = currentNode;
         }
+        return head;
     }
 
     // Print the list
-    void print() {
+    static void print(Node head) {
         Node currentNode = head;
 
         if (head == null) {
@@ -45,26 +43,28 @@ class LinkedList {
     }
 
     // Delete at start
-    void deleteAtStart() {
+    static Node deleteAtStart(Node head) {
         if (head == null) {
-            return;
+            return head;
         }
         Node currentNode = head;
         head = head.next;
         currentNode.next = null;
         head.prev = null;
+        return head;
     }
 
     // Delete at end
-    void deleteAtEnd() {
+    static Node deleteAtEnd(Node head) {
         if (head == null) {
-            return;
+            return head;
         }
         Node currentNode = head;
         while (currentNode.next.next != null) {
             currentNode = currentNode.next;
         }
         currentNode.next = null;
+        return head;
     }
 
     // Delete at middle
@@ -72,7 +72,7 @@ class LinkedList {
      * 1 2 (3) 4 5
      * 1 2 (3) 4 even (second of the two middle elements.)
      */
-    void deleteAtMiddle() {
+    static void deleteAtMiddle(Node head) {
         Node slow = head, fast = head, previousNode = null;
 
         while (fast != null && fast.next != null) {
@@ -85,11 +85,11 @@ class LinkedList {
     }
 
     // Delete the given node
-    void deleteGivenNode(int k) {
+    static Node deleteGivenNode(Node head, int k) {
         Node currentNode = head, previousNode = null;
 
         if (head == null) {
-            return;
+            return head;
         }
 
         // if head node
@@ -99,7 +99,7 @@ class LinkedList {
             if (head != null) {
                 head.prev = null;
             }
-            return;
+            return head;
         }
 
         while (currentNode != null && currentNode.data != k) {
@@ -108,19 +108,19 @@ class LinkedList {
         }
         // Node not present
         if (currentNode == null) {
-            return;
+            return head;
         }
         previousNode.next = currentNode.next;
         if (currentNode.next != null) {
             currentNode.next.prev = previousNode;
-            return;
         }
+        return head;
     }
 
     // Delete the node at given position
-    void deleteGivenPosition(int p) {
+    static Node deleteGivenPosition(Node head, int p) {
         if (head == null) {
-            return;
+            return head;
         }
         Node currentNode = head, previousNode = null;
 
@@ -130,7 +130,7 @@ class LinkedList {
             if (head != null) {
                 head.prev = null;
             }
-            return;
+            return head;
         }
 
         while (currentNode != null && 1 < p) {
@@ -141,47 +141,43 @@ class LinkedList {
 
         // If k is greater than list size
         if (currentNode == null) {
-            return;
+            return head;
         }
         previousNode.next = currentNode.next;
 
         if (currentNode.next != null) {
             currentNode.next.prev = previousNode;
-            return;
         }
+        return head;
     }
-}
 
-public class DeletionDLL {
     public static void main(String[] args) {
-        LinkedList list = new LinkedList();
+        Scanner s = new Scanner(System.in);
 
-        try (
-                Scanner s = new Scanner(System.in)) {
-            int limit = s.nextInt();
-
-            for (int i = 0; i < limit; i++) {
-                int data = s.nextInt();
-                list.insertAtEnd(data);
-            }
+        Node head = null;
+        int length = 8;
+        while (length != 0) {
+            int t1 = s.nextInt();
+            head = insertAtEnd(head, t1);
+            length--;
         }
-        // System.out.println("----------Insert - end-------------");
-        // list.print();
-        // System.out.println("-----------Deletion------------");
-        // System.out.println("------------start------------");
-        // list.deleteAtStart();
-        // list.print();
-        // System.out.println("------------end------------");
-        // list.deleteAtEnd();
-        // list.print();
-        // System.out.println("-----------middle------------");
-        list.deleteAtMiddle();
-        list.print();
+        System.out.println("----------Insert - end-------------");
+        print(head);
+        System.out.println("-----------Deletion------------");
+        System.out.println("------------start------------");
+        head = deleteAtStart(head);
+        print(head);
+        System.out.println("------------end------------");
+        deleteAtEnd(head);
+        print(head);
+        System.out.println("-----------middle------------");
+        deleteAtMiddle(head);
+        print(head);
         System.out.println("-----------given node------------");
-        list.deleteGivenNode(3);
-        list.print();
+        head = deleteGivenNode(head, 2);
+        print(head);
         System.out.println("-----------given position------------");
-        list.deleteGivenPosition(1);
-        list.print();
+        head = deleteGivenPosition(head, 1);
+        print(head);
     }
 }
