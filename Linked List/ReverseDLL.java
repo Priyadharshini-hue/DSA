@@ -4,17 +4,28 @@ class Node {
     int data;
     Node next, prev;
 
-    Node(int d) {
-        data = d;
+    Node(int t) {
+        data = t;
         next = prev = null;
     }
 }
 
-class LinkedList {
-    Node head;
+public class ReverseDLL {
+    // Print the list
+    static void print(Node head) {
+        if (head == null) {
+            return;
+        } else {
+            Node currentNode = head;
+            while (currentNode != null) {
+                System.out.print(currentNode.data + " ");
+                currentNode = currentNode.next;
+            }
+        }
+        System.out.println(" ");
+    }
 
-    // Insert at end
-    void insertAtEnd(int data) {
+    static Node insertAtEnd(Node head, int data) {
         Node node = new Node(data);
 
         if (head == null) {
@@ -27,16 +38,13 @@ class LinkedList {
             currentNode.next = node;
             node.prev = currentNode;
         }
+        return head;
     }
 
-    // Reverse a list - iterative
-    void reverseList() {
-        Node currentNode = head, nextNode = null, prevNode = null;
-
-        if (head == null) {
-            return;
-        }
-
+    // iterative
+    static Node reverse(Node head) {
+        Node prevNode = null, currentNode = head,
+                nextNode = null;
         while (currentNode != null) {
             nextNode = currentNode.next;
             currentNode.next = prevNode;
@@ -44,39 +52,41 @@ class LinkedList {
             prevNode = currentNode;
             currentNode = nextNode;
         }
-        head = prevNode;
+        return prevNode;
     }
 
-    void print() {
-        Node currentNode = head;
-
-        if (head == null) {
-            return;
-        } else {
-            while (currentNode != null) {
-                System.out.print(currentNode.data + " ");
-                currentNode = currentNode.next;
-            }
+    // recursive
+    static Node reverse1(Node node) {
+        if (node == null || node.next == null) {
+            return node;
         }
-        System.out.println(" ");
-    }
-}
+        Node newHeadNode = reverse1(node.next);
 
-public class ReverseDLL {
+        node.next.next = node;
+        node.next = null;
+        return newHeadNode;
+        // Node nextNode = node.next;
+        // node.next = node.prev;
+        // node.prev=nextNode;
+        // if (node.prev==null) {
+        // return node;
+        // }
+        // return reverse1(node.prev);
+    }
+
     public static void main(String[] args) {
-        LinkedList list = new LinkedList();
+        Scanner s = new Scanner(System.in);
 
-        try (Scanner s = new Scanner(System.in)) {
-            int limit = s.nextInt();
-
-            for (int i = 0; i < limit; i++) {
-                int data = s.nextInt();
-                list.insertAtEnd(data);
-            }
+        Node head = null;
+        int length = 5;
+        while (length != 0) {
+            int t1 = s.nextInt();
+            head = insertAtEnd(head, t1);
+            length--;
         }
-
-        list.reverseList();
-
-        list.print();
+        head = reverse(head);
+        print(head);
+        head = reverse1(head);
+        print(head);
     }
 }
