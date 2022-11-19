@@ -1,10 +1,19 @@
 import java.util.Scanner;
 
-class LinkedList {
-    Node head;
+class Node {
+    int data;
+    Node next;
 
+    Node(int t) {
+        data = t;
+        next = null;
+    }
+
+}
+
+public class AddOneToLL {
     // Insert at end
-    void insertAtEnd(int data) {
+    static Node insertAtEnd(Node head, int data) {
         Node node = new Node(data);
 
         if (head == null) {
@@ -16,25 +25,40 @@ class LinkedList {
             }
             currentNode.next = node;
         }
+        return head;
     }
 
-    void print() {
+    // Print the list
+    static void print(Node head) {
+        Node currentNode = head;
+
         if (head == null) {
             return;
+        } else {
+            while (currentNode != null) {
+                System.out.print(currentNode.data + " ");
+                currentNode = currentNode.next;
+            }
         }
-
-        Node currentNode = head;
-        while (currentNode != null) {
-            System.out.print(currentNode.data + " ");
-            currentNode = currentNode.next;
-        }
-        System.out.println();
+        System.out.println(" ");
     }
 
-    Node reverse(Node head) {
+    // O(n) & O(n)
+    static int traverseNode(Node node) {
+        if (node == null) {
+            return 1;
+        }
+
+        int carry = traverseNode(node.next);
+        node.data = node.data + carry;
+        carry = node.data / 10;
+        node.data = node.data % 10;
+        return carry;
+    }
+
+    static Node reverse(Node head) {
         Node prevNode = null, currentNode = head,
                 nextNode = null;
-
         while (currentNode != null) {
             nextNode = currentNode.next;
             currentNode.next = prevNode;
@@ -44,63 +68,46 @@ class LinkedList {
         return prevNode;
     }
 
-    Node addOneToLL(Node head) {
-        Node lastNode = reverse(head), prevNode = null,
-                currentNode = lastNode;
-        int c = 1;
+    static Node addOneToLL(Node node) {
+        // int carry = traverseNode(node);
+
+        // if (carry == 1) {
+        // Node newNode = new Node(carry);
+        // newNode.next = node;
+        // return newNode;
+        // }
+        // System.out.println(carry);
+        // return node;
+        Node reversedNode = reverse(node), currentNode = reversedNode,
+                prevNode = null;
+        int carry = 1;
 
         while (currentNode != null) {
-            currentNode.data = currentNode.data + c;
-            c = currentNode.data / 10;
+            currentNode.data = currentNode.data + carry;
+            carry = currentNode.data / 10;
             currentNode.data = currentNode.data % 10;
             prevNode = currentNode;
             currentNode = currentNode.next;
         }
 
-        if (c != 0) {
-            Node newNode = new Node(1);
+        if (carry != 0) {
+            Node newNode = new Node(carry);
             prevNode.next = newNode;
         }
-
-        return reverse(lastNode);
+        return reverse(reversedNode);
     }
-    // O(n) & O(n)
-    // int addOne(Node node) {
-    // if (node == null) {
-    // return 1;
-    // }
-    // int c = addOne(node.next);
-    // node.data = c + node.data;
-    // int carry = node.data / 10;
-    // node.data = node.data % 10;
-    // return carry;
-    // }
 
-    // Node addOneToLL(Node head) {
-    // int carry = addOne(head);
-    // if (carry == 1) {
-    // Node newNode = new Node(1);
-    // newNode.next = head;
-    // head = newNode;
-    // }
-    // return head;
-    // }
-}
-
-public class AddOneToLL {
     public static void main(String[] args) {
-        LinkedList list = new LinkedList();
+        Scanner s = new Scanner(System.in);
 
-        try (Scanner s = new Scanner(System.in)) {
-            int limit = s.nextInt();
-
-            for (int i = 0; i < limit; i++) {
-                int data = s.nextInt();
-                list.insertAtEnd(data);
-            }
+        Node head = null;
+        int length = s.nextInt();
+        while (length != 0) {
+            int t1 = s.nextInt();
+            head = insertAtEnd(head, t1);
+            length--;
         }
-
-        list.head = list.addOneToLL(list.head);
-        list.print();
+        head = addOneToLL(head);
+        print(head);
     }
 }
