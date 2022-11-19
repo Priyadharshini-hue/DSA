@@ -1,8 +1,19 @@
-class LinkedList {
-    Node head;
+import java.util.Scanner;
 
+class Node {
+    int data;
+    Node next;
+
+    Node(int t) {
+        data = t;
+        next = null;
+    }
+
+}
+
+public class AddTwoNumbersLL {
     // Insert at end
-    void insertAtEnd(int data) {
+    static Node insertAtEnd(Node head, int data) {
         Node node = new Node(data);
 
         if (head == null) {
@@ -14,25 +25,27 @@ class LinkedList {
             }
             currentNode.next = node;
         }
+        return head;
     }
 
-    void print() {
+    // Print the list
+    static void print(Node head) {
+        Node currentNode = head;
+
         if (head == null) {
             return;
+        } else {
+            while (currentNode != null) {
+                System.out.print(currentNode.data + " ");
+                currentNode = currentNode.next;
+            }
         }
-
-        Node currentNode = head;
-        while (currentNode != null) {
-            System.out.print(currentNode.data + " ");
-            currentNode = currentNode.next;
-        }
-        System.out.println();
+        System.out.println(" ");
     }
 
-    Node reverse(Node head) {
+    static Node reverse(Node head) {
         Node prevNode = null, currentNode = head,
                 nextNode = null;
-
         while (currentNode != null) {
             nextNode = currentNode.next;
             currentNode.next = prevNode;
@@ -42,58 +55,61 @@ class LinkedList {
         return prevNode;
     }
 
-    Node addTwoNumbers(Node head1, Node head2) {
-        Node list1 = reverse(head1), list2 = reverse(head2),
-                sum = null;
+    // Input: l1 = [9,9,9,9,9,9,9], l2 = [9,9,9,9]
+    // Output: [8,9,9,9,0,0,0,1]
+
+    // List1: 7->5->9->4->6 // represents number 75946
+    // List2: 8->4 // represents number 84
+    // Output:
+    // Resultant list: 7->6->0->3->0// represents number 76030
+
+    static Node addTwoNumbers(Node head1, Node head2) {
+        Node currentNode1 = reverse(head1), currentNode2 = reverse(head2),
+                tempNode = new Node(0), dummyNode = tempNode;
         int carry = 0;
 
-        while (list1 != null || list2 != null || carry != 0) {
-            int val = carry;
+        while (currentNode1 != null || currentNode2 != null || carry == 1) {
+            int sum = carry;
 
-            if (list1 != null) {
-                val += list1.data;
-            }
-            if (list2 != null) {
-                val += list2.data;
+            if (currentNode1 != null) {
+                sum += currentNode1.data;
+                currentNode1 = currentNode1.next;
             }
 
-            carry = val / 10;
-
-            Node newNode = new Node(val % 10);
-            newNode.next = sum;
-
-            sum = newNode;
-
-            if (list1 != null) {
-                list1 = list1.next;
+            if (currentNode2 != null) {
+                sum += currentNode2.data;
+                currentNode2 = currentNode2.next;
             }
-            if (list2 != null) {
-                list2 = list2.next;
-            }
+            Node node = new Node(sum % 10);
+            carry = sum / 10;
+            // dummyNode.next = node;
+            // dummyNode = dummyNode.next;
+            node.next = dummyNode;
+            dummyNode = node;
         }
-        return sum;
+        return dummyNode;
     }
-}
 
-public class AddTwoNumbersLL {
     public static void main(String[] args) {
-        LinkedList list1 = new LinkedList();
-        LinkedList list2 = new LinkedList();
-        LinkedList list = new LinkedList();
+        Scanner s = new Scanner(System.in);
 
-        list1.insertAtEnd(4);
-        list1.insertAtEnd(5);
-        list1.insertAtEnd(6);
-        list1.insertAtEnd(7);
-        list1.insertAtEnd(8);
-        list1.insertAtEnd(9);
+        Node head1 = null, head2 = null;
+        int length1 = s.nextInt();
+        while (length1 != 0) {
+            int t1 = s.nextInt();
+            head1 = insertAtEnd(head1, t1);
+            length1--;
+        }
 
-        list2.insertAtEnd(10);
-        list2.insertAtEnd(1);
-        list2.insertAtEnd(2);
-        list2.insertAtEnd(3);
-
-        list.head = list.addTwoNumbers(list1.head, list2.head);
-        list.print();
+        int length2 = s.nextInt();
+        while (length2 != 0) {
+            int t1 = s.nextInt();
+            head2 = insertAtEnd(head2, t1);
+            length2--;
+        }
+        Node sumHead = addTwoNumbers(head1, head2);
+        print(head1);
+        print(head2);
+        print(sumHead);
     }
 }
