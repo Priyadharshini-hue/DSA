@@ -10,7 +10,7 @@ Output:
 class LargestNumber {
 	// O(n)
 	static int maxNum(int[] arr, int length) {
-		int left = 0, right = length - 1, max = -1;
+		int left = 0, right = length - 1;
 		while (left < right) {
 			if (arr[left] < arr[right]) {
 				left++;
