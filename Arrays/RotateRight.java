@@ -1,32 +1,24 @@
 /*
-Given an array, rotate the array by one position in clock-wise direction(right side).
- 
-Example 1:
+Clock-wise direction(right side).
 Input:
-N = 5
+N = 5, k=2
 A[] = {1, 2, 3, 4, 5}
 Output:
 5 1 2 3 4
 */
-import java.util.*;
+import java.util.Scanner;
 
-class RotateRight { // RotateRight or clockwise
-	// Rotate method
-	static void rotate(int[] arr, int n, int r) {
+class RotateRight {
 
-		reverse(0, n - r, arr); // Reverse first half
-		reverse(n - r + 1, n - 1, arr); // Reverse second half
-		reverse(0, n - 1, arr); // Reverse the whole array
-
+	static void rotate(int[] arr, int n, int k) {
+		k = k % n;
+		reverse(0, n - 1, arr);
+		reverse(0, k - 1, arr);
+		reverse(k, n - 1, arr);
 	}
 
-	// Reverse method
 	static void reverse(int start, int end, int[] arr) {
-
-		// Initialize t value
-		int t;
-
-		// Reversing the first and last values in array
+		int t = 0;
 		while (start < end) {
 			t = arr[start];
 			arr[start] = arr[end];
@@ -37,11 +29,17 @@ class RotateRight { // RotateRight or clockwise
 	}
 
 	public static void main(String args[]) {
-		int arr[] = { 9, 8, 7, 6, 4, 2, 1, 3 };
-		int r = 2;
+		Scanner s = new Scanner(System.in);
+		int n = s.nextInt();
+		int k = s.nextInt();
+		int[] arr = new int[n];
+		for (int i = 0; i < n; i++) {
+			arr[i] = s.nextInt();
+		}
 
-		rotate(arr, arr.length - 1, r);
-
-		System.out.println(Arrays.toString(arr));
+		rotate(arr, n, k);
+		for (int i = 0; i < arr.length; i++) {
+			System.out.print(arr[i] + " ");
+		}
 	}
 }
