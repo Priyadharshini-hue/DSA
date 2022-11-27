@@ -1,44 +1,71 @@
+
 /*
-Find the duplicate numbers in an array.
+Find the duplicate numbers in an array (in place)
  */
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Scanner;
 
 class DuplicateNumbers {
-    // O(n) & O(n)
-    private static ArrayList<Integer> findNumbers(int[] a) {
 
-        HashMap<Integer, Integer> map = new HashMap<>();
-        ArrayList<Integer> list = new ArrayList<>();
+    // O(n) & O(1)
+    static int removeduplicate(int[] arr, int length) {
+        int index = 1;
 
-        // Traverse the array
-        for (int i = 0; i < a.length; i++) {
-            map.put(a[i], map.getOrDefault(a[i], 0) + 1);
-        }
-
-        // Traverse the map to check if the frequency of elements is greater than 1
-        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
-            if (entry.getValue() > 1) {
-                list.add(entry.getKey());
+        for (int i = 1; i < length; i++) {
+            if (arr[index - 1] != arr[i]) {
+                arr[index] = arr[i];
+                index++;
             }
         }
+        return index;
+    }
 
-        // If the list is zero, return -1
-        if (list.size() < 0) {
-            list.add(-1);
-            return list;
+    public static int removeElement(int[] arr, int val) {
+        // edge case
+        if (val > arr[arr.length - 1] || val < arr[0]) {
+            return arr.length;
         }
 
-        // Sort the repeated elements
-        Collections.sort(list);
-        return list;
+        int index = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[index] != val) {
+                arr[index] = arr[i];
+                index++;
+            }
+        }
+        return index;
+    }
+
+    static int removeduplicate2(int[] arr, int length) {
+        // edge case
+        if (length < 3) {
+            return length;
+        }
+
+        int index = 2;
+        for (int i = 2; i < length; i++) {
+            if (arr[index - 2] != arr[i]) {
+                arr[index] = arr[i];
+                index++;
+            }
+        }
+        return index;
     }
 
     public static void main(String[] args) {
-        int a[] = { 0, 3, 1, 2, 3, 2 };
+        Scanner s = new Scanner(System.in);
+        int n = s.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = s.nextInt();
+        }
 
-        System.out.println(findNumbers(a));
+        // remove duplicates
+        System.out.println(removeduplicate(arr, arr.length));
+
+        // remove the given element
+        System.out.println(removeElement(arr, 3));
+
+        // allow two duplicates and remove the rest
+        System.out.println(removeduplicate2(arr, arr.length));
     }
 }
