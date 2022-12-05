@@ -1,5 +1,3 @@
-package Arrays.SlidingWindow;
-
 import java.util.Scanner;
 
 public class LongestSubarraywithOnesafterReplacement {
