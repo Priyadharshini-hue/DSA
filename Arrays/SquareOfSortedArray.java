@@ -1,22 +1,23 @@
 import java.util.Scanner;
 
+//array sorted already
 public class SquareOfSortedArray {
     // O(n) & O(n)
-    static int[] findSortedSquareArray(int[] arr) {
+    static void squareOfSortedArray(int[] arr) {
         int[] sortedSquaredArray = new int[arr.length];
-        int leftPtr = 0, rightPtr = arr.length - 1, lastIndex = rightPtr;
-
+        int leftPtr = 0, rightPtr = arr.length - 1, index = rightPtr;
         while (leftPtr <= rightPtr) {
-            if (arr[leftPtr] * arr[leftPtr] > arr[rightPtr] * arr[rightPtr]) {
-                sortedSquaredArray[lastIndex] = arr[leftPtr] * arr[leftPtr];
-                leftPtr++;
-            } else {
-                sortedSquaredArray[lastIndex] = arr[rightPtr] * arr[rightPtr];
+            if (Math.abs(arr[leftPtr]) < Math.abs(arr[rightPtr])) {
+                sortedSquaredArray[index--] = arr[rightPtr] * arr[rightPtr];
                 rightPtr--;
+            } else {
+                sortedSquaredArray[index--] = arr[leftPtr] * arr[leftPtr];
+                leftPtr++;
             }
-            lastIndex--;
         }
-        return sortedSquaredArray;
+        for (int element : sortedSquaredArray) {
+            System.out.print(element + " ");
+        }
     }
 
     public static void main(String[] args) {
@@ -26,11 +27,6 @@ public class SquareOfSortedArray {
         for (int i = 0; i < n; i++) {
             arr[i] = s.nextInt();
         }
-
-        int[] sortedSquaredArray = findSortedSquareArray(arr);
-
-        for (int element : sortedSquaredArray) {
-            System.out.print(element + " ");
-        }
+        squareOfSortedArray(arr);
     }
 }
