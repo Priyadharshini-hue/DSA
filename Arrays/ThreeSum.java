@@ -22,6 +22,7 @@ public class ThreeSum {
         return new int[] { -1 };
     }
 
+    // O(n2) & O(n)
     static ArrayList<ArrayList<Integer>> findTriplets(int[] arr, int sum) {
         ArrayList<ArrayList<Integer>> l = new ArrayList<ArrayList<Integer>>();
         Arrays.sort(arr);
@@ -61,6 +62,6 @@ public class ThreeSum {
         for (int i = 0; i < n; i++) {
             arr[i] = s.nextInt();
         }
-        System.out.println(findTriplets(arr, 0));
+        System.out.println(findIndicies(arr, 10));
     }
 }
