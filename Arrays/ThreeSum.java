@@ -27,13 +27,12 @@ public class ThreeSum {
         ArrayList<ArrayList<Integer>> l = new ArrayList<ArrayList<Integer>>();
         Arrays.sort(arr);
         for (int i = 0; i < arr.length - 2; i++) {
-            int low = i + 1, high = arr.length - 1,
-                    a = sum - arr[i];
+            int low = i + 1, high = arr.length - 1;
             while (low < high) {
-                int tempSum = arr[low] + arr[high];
-                if (tempSum < a) {
+                int tempSum = arr[low] + arr[high]+arr[i];
+                if (tempSum < sum) {
                     low++;
-                } else if (tempSum > a) {
+                } else if (tempSum > sum) {
                     high--;
                 } else {
                     ArrayList<Integer> l1 = new ArrayList<>();
