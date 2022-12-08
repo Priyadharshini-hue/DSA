@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 /*
 Largest Element in Array
 Input:
@@ -22,8 +24,12 @@ class LargestNumber {
 	}
 
 	public static void main(String[] args) {
-		int[] arr = { 1, 2, 0, 3, 2, 4, 5 };
-
+		Scanner s = new Scanner(System.in);
+        int n = s.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = s.nextInt();
+        }
 		System.out.println(maxNum(arr, arr.length));
 	}
 }
